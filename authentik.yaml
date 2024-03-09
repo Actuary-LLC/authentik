@@ -14,9 +14,9 @@ services:
     networks:
       - traefik
     volumes:
-      - "$DOCKERDIR/apps/authentik/media:/media"
-      - "$DOCKERDIR/apps/authentik/custom-templates:/templates"
-      - "$DOCKERDIR/apps/authentik/geoip/data:/geoip"
+      - "authentik:/media"
+      - "authentik:/templates"
+      - "authentik:/geoip"
     environment:
       - AUTHENTIK_REDIS__HOST
       - AUTHENTIK_POSTGRESQL__HOST
@@ -29,11 +29,11 @@ services:
       - AUTHENTIK_COOKIE_DOMAIN
       # - WORKERS
     secrets:
-      - authentik_postgresql_db
-      - authentik_postgresql_user
-      - authentik_postgresql_password
-      - authelia_notifier_smtp_password
-      - authentik_secret_key
+     # - authentik_postgresql_db
+     # - authentik_postgresql_user
+     # - authentik_postgresql_password
+     # - authelia_notifier_smtp_password
+     # - authentik_secret_key
     labels:
       - "traefik.enable=true"
       ## HTTP Routers
@@ -49,3 +49,11 @@ services:
       ## HTTP Services
       - "traefik.http.routers.authentik-rtr.service=authentik-svc"
       - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
+
+volumes:
+  authentik:
+    driver: local
+    driver_opts:
+      type: "nfs"
+     # o: "addr=unraid.lan,rw,hard,intr,nofail"
+      device: ":/mnt/user/services/authentik/"
