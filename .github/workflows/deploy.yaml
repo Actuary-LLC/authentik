@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-runner:
-    runs-on: [actuary]
+    runs-on: [traefik]
  #   env:
 #      JUPYTER_NOTEBOOK_PASSWORD: ${{ secrets.JUPYTER_NOTEBOOK_PASSWORD }}
     steps:
