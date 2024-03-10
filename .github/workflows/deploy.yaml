@@ -13,7 +13,7 @@ jobs:
     steps:
    #   - name: Refresh images
   #      run: |
- #         docker image pull actuary/hub:main
+  #        docker image pull actuary/hub:main
   #        docker image pull actuary/notebook:main
       - name: Checkout
         uses: actions/checkout@v4.0.0
