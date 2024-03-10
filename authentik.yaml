@@ -1,40 +1,4 @@
 version: "3.9"
-
-networks:
-  reverse-proxy:
-    external: true
-    
-volumes:
-  authentik_geoip:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/geoip"
-  authentik_templates:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/templates"
-  authentik_media:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/media"
-  authentik_postgres:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/postgres"
-  authentik_redis:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/redis"
       
 services:
   redis:
@@ -98,8 +62,44 @@ services:
     volumes:
       - authentik_postgres:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: ${PG_PASS:?database password required}
+      POSTGRES_PASSWORD: password
       POSTGRES_USER: ${PG_USER:-authentik}
       POSTGRES_DB: ${PG_DB:-authentik}
     #env_file:
     #  - .env
+    
+networks:
+  reverse-proxy:
+    external: true
+    
+volumes:
+  authentik_geoip:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=unraid.lan,rw,hard"
+      device: ":/mnt/user/services/authentik/geoip"
+  authentik_templates:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=unraid.lan,rw,hard"
+      device: ":/mnt/user/services/authentik/templates"
+  authentik_media:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=unraid.lan,rw,hard"
+      device: ":/mnt/user/services/authentik/media"
+  authentik_postgres:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=unraid.lan,rw,hard"
+      device: ":/mnt/user/services/authentik/postgres"
+  authentik_redis:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=unraid.lan,rw,hard"
+      device: ":/mnt/user/services/authentik/redis"
