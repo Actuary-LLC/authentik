@@ -21,7 +21,6 @@ jobs:
      #   run: |
      #     echo "${{ secrets.OAUTH }}" > oauth.env
       - name: Remove and redeploy services
-        run: |
-          docker stack rm external
+      - run: docker stack rm external
       - run: sleep 5
       - run: docker stack deploy -c authentik.yaml external
