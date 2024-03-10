@@ -13,8 +13,8 @@ services:
       timeout: 3s
     networks:
       - reverse-proxy
-    volumes:
-      - authentik_redis:/data
+  #  volumes:
+  #    - authentik_redis:/data
   authentik_server:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.2.2}
     container_name: authentik_server
