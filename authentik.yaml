@@ -50,11 +50,11 @@ services:
      # - authentik_postgresql_password
      # - authelia_notifier_smtp_password
      # - authentik_secret_key
-  postgresql:
+  postgres:
     image: docker.io/library/postgres:12-alpine
     restart: unless-stopped
     container_name: authentik_postgres
-    user: "postgres"
+    user: root
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d authentik_db -U authentik"]
       start_period: 20s
@@ -62,7 +62,8 @@ services:
       retries: 5
       timeout: 5s
     volumes:
-      -  /mnt/user/services/authentik/postgresql/data:/var/lib/postgresql/data
+      -  /mnt/user/services/authentik/postgres/data:/var/lib/postgresql/data
+      -  /mnt/user/services/authentik/postgres/config:/etc/postgresql
      # -  postgresTest:/var/lib/postgresql/data 
     environment:
       POSTGRES_PASSWORD: password
@@ -70,7 +71,15 @@ services:
       POSTGRES_DB: authentik_db
     #env_file:
     #  - .env
-    
+ postgres_setup:
+   image: postgres:15.1
+   user: root
+   volumes:
+     - /mnt/user/services/authentik/postgres/data:/var/lib/postgresql/data
+     - /mnt/user/services/authentik/postgres/config:/etc/postgresql
+   entrypoint: [ "bash", "-c", "chmod 750 -R /var/lib/postgresql/data && chmod 750 -R /etc/postgresql"] 
+   depends_on:
+     - postgres
 networks:
   reverse-proxy:
     external: true
