@@ -20,8 +20,8 @@ jobs:
       #- name: 'Create env file'
      #   run: |
      #     echo "${{ secrets.OAUTH }}" > oauth.env
+     #docker stack rm external
+          #sleep 5
       - name: Remove and redeploy services
-        run: | 
-          docker stack rm external
-          sleep 5
+        run: |
           docker stack deploy -c authentik.yaml external
