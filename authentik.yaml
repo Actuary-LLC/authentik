@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
     command: server
     networks:
-      - traefik
+      - reverse-proxy
     volumes:
       - "authentik_media:/media"
       - "authentik_templates:/templates"
