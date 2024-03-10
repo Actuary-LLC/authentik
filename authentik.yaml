@@ -52,7 +52,6 @@ services:
      # - authentik_secret_key
   postgresql:
     image: docker.io/library/postgres:12-alpine
-    user: "99"
     restart: unless-stopped
     container_name: authentik_postgres
     healthcheck:
