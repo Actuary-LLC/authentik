@@ -63,6 +63,7 @@ services:
       timeout: 5s
     volumes:
       -  /mnt/user/services/authentik/:/var/lib/postgresql/data
+      -  postgresTest:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: authentik
