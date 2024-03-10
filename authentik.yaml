@@ -33,10 +33,10 @@ services:
     command: server
     networks:
       - reverse-proxy
-    volumes:
-      - "authentik_media:/media"
-      - "authentik_templates:/templates"
-      - "authentik_geoip:/geoip"
+    #volumes:
+    #  - "authentik_media:/media"
+    #  - "authentik_templates:/templates"
+    #  - "authentik_geoip:/geoip"
     #environment:
     #  - AUTHENTIK_REDIS__HOST
     #  - AUTHENTIK_POSTGRESQL__HOST
