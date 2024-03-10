@@ -35,7 +35,7 @@ services:
       - AUTHENTIK_SECRET_KEY
       - AUTHENTIK_COOKIE_DOMAIN
       # - WORKERS
-    secrets:
+    #secrets:
      # - authentik_postgresql_db
      # - authentik_postgresql_user
      # - authentik_postgresql_password
