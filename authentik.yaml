@@ -21,14 +21,14 @@ services:
     networks:
       - reverse-proxy
   authentik_server:
-    image: ghcr.io/goauthentik/server:latest
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.2.2}
     container_name: authentik_server
   #  restart: unless-stopped
     command: server
     networks:
       - reverse-proxy
   authentik_worker:
-    image: ghcr.io/goauthentik/server:latest
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.2.2}
     container_name: authentik_worker
   #  restart: unless-stopped
     command: worker
