@@ -76,6 +76,7 @@ networks:
     external: true
     
 volumes:
+  postgresTest:
   authentik_postgres:
     driver: local
     driver_opts:
