@@ -22,7 +22,7 @@ jobs:
      #     echo "${{ secrets.OAUTH }}" > oauth.env
       - name: Remove and redeploy services
         run: |
-          SERVICES=("external_authentik") 
+          SERVICES=("external_authentik" "external_authentik_server") 
           for SERVICE_NAME in "${SERVICES[@]}"; do
             if docker service ls | grep -q $SERVICE_NAME; then
               docker service rm $SERVICE_NAME;
