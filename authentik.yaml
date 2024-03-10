@@ -4,25 +4,7 @@ networks:
   reverse-proxy:
     external: true
     
-volumes:
-  authentik_geoip:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/geoip"
-  authentik_templates:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/templates"
-  authentik_media:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/media"
+
 
       
 services:
