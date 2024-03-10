@@ -37,16 +37,16 @@ services:
       - "authentik_media:/media"
       - "authentik_templates:/templates"
       - "authentik_geoip:/geoip"
-    environment:
-      - AUTHENTIK_REDIS__HOST
-      - AUTHENTIK_POSTGRESQL__HOST
-      - AUTHENTIK_POSTGRESQL__NAME
-      - AUTHENTIK_POSTGRESQL__USER
-      - AUTHENTIK_POSTGRESQL__PASSWORD
-      - AUTHENTIK_EMAIL__PASSWORD
-      - AUTHENTIK_ERROR_REPORTING__ENABLED
-      - AUTHENTIK_SECRET_KEY
-      - AUTHENTIK_COOKIE_DOMAIN
+    #environment:
+    #  - AUTHENTIK_REDIS__HOST
+    #  - AUTHENTIK_POSTGRESQL__HOST
+    #  - AUTHENTIK_POSTGRESQL__NAME
+    #  - AUTHENTIK_POSTGRESQL__USER
+    #  - AUTHENTIK_POSTGRESQL__PASSWORD
+    #  - AUTHENTIK_EMAIL__PASSWORD
+    #  - AUTHENTIK_ERROR_REPORTING__ENABLED
+    #  - AUTHENTIK_SECRET_KEY
+    #  - AUTHENTIK_COOKIE_DOMAIN
       # - WORKERS
     #secrets:
      # - authentik_postgresql_db
