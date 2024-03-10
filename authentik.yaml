@@ -54,18 +54,3 @@ services:
      # - authentik_postgresql_password
      # - authelia_notifier_smtp_password
      # - authentik_secret_key
-    labels:
-      - "traefik.enable=true"
-      ## HTTP Routers
-      - "traefik.http.routers.authentik-rtr.rule=Host(`authentik.$DOMAIN`)"
-      - "traefik.http.routers.authentik-rtr.entrypoints=websecure"
-      - "traefik.http.routers.authentik-rtr.tls=true"
-      - "traefik.http.routers.authentik-rtr.tls.certresolver=le"
-      ## Individual Application forwardAuth regex (catch any subdomain using individual application forwardAuth)  
-      - "traefik.http.routers.authentik-rtr-outpost.rule=HostRegexp(`{subdomain:[a-z0-9-]+}.$DOMAIN`) && PathPrefix(`/outpost.goauthentik.io/`)"
-      - "traefik.http.routers.authentik-rtr-outpost.entrypoints=websecure"
-      - "traefik.http.routers.authentik-rtr-outpost.tls=true"
-      - "traefik.http.routers.authentik-rtr-outpost.tls.certresolver=le"
-      ## HTTP Services
-      - "traefik.http.routers.authentik-rtr.service=authentik-svc"
-      - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
