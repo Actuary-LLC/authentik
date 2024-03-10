@@ -29,8 +29,8 @@ services:
   authentik_server:
     image: ghcr.io/goauthentik/server:latest
     container_name: authentik_server
-    restart: unless-stopped
-    command: server
+  #  restart: unless-stopped
+   # command: server
     networks:
       - reverse-proxy
     #volumes:
