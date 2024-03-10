@@ -3,7 +3,14 @@ version: "3.9"
 networks:
   reverse-proxy:
     external: true
-
+    
+volumes:
+  unraid:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=unraid.lan,rw,hard"
+      device: ":/mnt/user/services/authentik/"
     
 services:
   authentik_server:
@@ -49,11 +56,3 @@ services:
       ## HTTP Services
       - "traefik.http.routers.authentik-rtr.service=authentik-svc"
       - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
-
-volumes:
-  authentik:
-    driver: local
-    driver_opts:
-      type: "nfs"
-     # o: "addr=unraid.lan,rw,hard,intr,nofail"
-      device: ":/mnt/user/services/authentik/"
