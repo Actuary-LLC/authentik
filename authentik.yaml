@@ -71,14 +71,14 @@ services:
       POSTGRES_DB: authentik_db
     #env_file:
     #  - .env
- postgres_setup:
-   image: postgres:15.1
-   user: root
-   volumes:
+  postgres_setup:
+    image: postgres:15.1
+    user: root
+    volumes:
      - /mnt/user/services/authentik/postgres/data:/var/lib/postgresql/data
      - /mnt/user/services/authentik/postgres/config:/etc/postgresql
-   entrypoint: [ "bash", "-c", "chmod 750 -R /var/lib/postgresql/data && chmod 750 -R /etc/postgresql"] 
-   depends_on:
+    entrypoint: [ "bash", "-c", "chmod 750 -R /var/lib/postgresql/data && chmod 750 -R /etc/postgresql"] 
+    depends_on:
      - postgres
 networks:
   reverse-proxy:
