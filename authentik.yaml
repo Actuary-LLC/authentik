@@ -5,13 +5,26 @@ networks:
     external: true
     
 volumes:
-  unraid:
+  authentik_geoip:
     driver: local
     driver_opts:
       type: "nfs"
       o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/"
-    
+      device: ":/mnt/user/services/authentik/geoip"
+  authentik_templates:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=unraid.lan,rw,hard"
+      device: ":/mnt/user/services/authentik/templates"
+  authentik_media:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=unraid.lan,rw,hard"
+      device: ":/mnt/user/services/authentik/media"
+
+      
 services:
   authentik_server:
     image: ghcr.io/goauthentik/server:latest
@@ -21,9 +34,9 @@ services:
     networks:
       - traefik
     volumes:
-      - "authentik:/media"
-      - "authentik:/templates"
-      - "authentik:/geoip"
+      - "authentik_media:/media"
+      - "authentik_templates:/templates"
+      - "authentik_geoip:/geoip"
     environment:
       - AUTHENTIK_REDIS__HOST
       - AUTHENTIK_POSTGRESQL__HOST
