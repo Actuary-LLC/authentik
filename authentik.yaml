@@ -51,7 +51,7 @@ services:
      # - authelia_notifier_smtp_password
      # - authentik_secret_key
   postgres:
-    image: postgres:16.2
+    image: postgres:latest
     user: "root"
     restart: unless-stopped
     container_name: authentik_postgres
@@ -62,9 +62,9 @@ services:
       retries: 5
       timeout: 5s
     volumes:
-      -  /mnt/user/services/authentik/postgres:/var/lib/postgresql/data
+   #   -  /mnt/user/services/authentik/postgres:/var/lib/postgresql/data
       #-  /mnt/user/services/authentik/postgres/config:/etc/postgresql
-      #-  /mnt/user/services/authentik/:/unraid
+      -  /mnt/user/services/authentik/:/unraid
      # -  postgresTest:/var/lib/postgresql/data 
     environment:
       POSTGRES_PASSWORD: password
