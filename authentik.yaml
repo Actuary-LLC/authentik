@@ -52,7 +52,7 @@ services:
      # - authentik_secret_key
   postgres:
     image: postgres:16.2
-    user: "999:999"
+    user: "root"
     restart: unless-stopped
     container_name: authentik_postgres
     healthcheck:
