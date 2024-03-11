@@ -70,8 +70,6 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: authentik
       POSTGRES_DB: authentik_db
-    #env_file:
-    #  - .env
     
 networks:
   reverse-proxy:
