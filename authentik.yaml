@@ -53,9 +53,8 @@ services:
   postgres:
     image: postgres:latest
     #user: "root"
-    user: "99:100"
+    #user: "99:100"
     restart: unless-stopped
-    container_name: authentik_postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d authentik_db -U authentik"]
       start_period: 20s
