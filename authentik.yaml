@@ -53,6 +53,7 @@ services:
   postgres:
     image: postgres:latest
     #user: "root"
+    user: "99:100"
     restart: unless-stopped
     container_name: authentik_postgres
     healthcheck:
