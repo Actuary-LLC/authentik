@@ -69,6 +69,7 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       #POSTGRES_USER: authentik
+      PGDATA: /var/lib/postgresql/data/pgdata 
       POSTGRES_DB: authentik_db
     
 networks:
