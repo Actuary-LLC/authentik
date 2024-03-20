@@ -53,7 +53,7 @@ services:
   postgres:
     image: postgres:latest
     #user: "root"
-    user: "99:100"
+    #user: "99:100"
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d authentik_db -U authentik"]
