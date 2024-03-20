@@ -67,8 +67,8 @@ services:
       -  /mnt/user/services/authentik/:/unraid
      # -  postgresTest:/var/lib/postgresql/data 
     environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: authentik
+      #POSTGRES_PASSWORD: password
+      #POSTGRES_USER: authentik
       POSTGRES_DB: authentik_db
     
 networks:
