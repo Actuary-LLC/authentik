@@ -69,7 +69,7 @@ services:
      # -  postgresTest:/var/lib/postgresql/data 
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_USER: authentik
+      POSTGRES_USER: nobody
       POSTGRES_DB: authentik_db
     
 networks:
