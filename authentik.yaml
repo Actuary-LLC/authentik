@@ -57,7 +57,7 @@ services:
     user: "nobody"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d authentik_db -U authentik"]
+      test: ["CMD-SHELL", "pg_isready -d authentik_db -U nobody"]
       start_period: 20s
       interval: 30s
       retries: 5
