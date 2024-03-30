@@ -62,8 +62,8 @@ services:
       interval: 30s
       retries: 5
       timeout: 5s
-    #volumes:
-    #  -  /mnt/user/services/authentik/postgres:/var/lib/postgresql/data
+    volumes:
+      -  /mnt/user/services/authentik/postgres:/var/lib/postgresql/data
       #-  /mnt/user/services/authentik/postgres/config:/etc/postgresql
      # -  /mnt/user/services/authentik/:/unraid
      # -  postgresTest:/var/lib/postgresql/data 
