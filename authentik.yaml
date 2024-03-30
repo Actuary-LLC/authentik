@@ -53,7 +53,7 @@ services:
   postgres:
     image: postgres:latest
     #user: "root"
-    #user: "99:100"
+    user: "999:999"
     #user: "nobody:users"
     restart: unless-stopped
     healthcheck:
