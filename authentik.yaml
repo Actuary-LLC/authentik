@@ -72,6 +72,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: nobody
       POSTGRES_DB: authentik_db
+      PGDATA: /var/lib/postgresql/data/pgdata
     
 networks:
   reverse-proxy:
