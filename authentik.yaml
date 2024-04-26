@@ -53,7 +53,7 @@ services:
   postgres:
     image: postgres:latest
     #user: "999:999"
-    user: "nm-iodin"
+    user: "postgres"
     #user: "nm-iodine"
     restart: unless-stopped
     #healthcheck:
@@ -70,7 +70,7 @@ services:
      # -  postgresTest:/var/lib/postgresql/data 
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_USER: nm-iodin
+      POSTGRES_USER: postgres
       POSTGRES_DB: authentik_db
       PGDATA: /var/lib/postgresql/data/pgdata
     
