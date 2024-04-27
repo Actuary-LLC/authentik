@@ -32,6 +32,7 @@ services:
       AUTHENTIK_POSTGRESQL__NAME: authentik_db
       AUTHENTIK_POSTGRESQL__USER: postgres_user
       AUTHENTIK_POSTGRESQL__PASSWORD: postgres_password
+      AUTHENTIK_COOKIE_DOMAIN: actuary.dev
       #AUTHENTIK_EMAIL__PASSWORD:
       #AUTHENTIK_ERROR_REPORTING__ENABLED:
       #AUTHENTIK_COOKIE_DOMAIN:
@@ -66,7 +67,13 @@ services:
     networks:
       - reverse-proxy
     environment:
-      - AUTHENTIK_SECRET_KEY=test
+      AUTHENTIK_SECRET_KEY: test
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgres
+      AUTHENTIK_POSTGRESQL__NAME: authentik_db
+      AUTHENTIK_POSTGRESQL__USER: postgres_user
+      AUTHENTIK_POSTGRESQL__PASSWORD: postgres_password
+      AUTHENTIK_COOKIE_DOMAIN: actuary.dev
 
   postgres:
     image: postgres:latest
