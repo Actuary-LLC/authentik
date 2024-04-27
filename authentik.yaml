@@ -14,6 +14,7 @@ services:
       - reverse-proxy
     #volumes:
     #  - authentik_redis:/data
+    
   authentik_server:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.2.2}
   #  restart: unless-stopped
@@ -26,7 +27,7 @@ services:
     #  - "$DOCKERDIR/apps/authentik/geoip/data:/geoip"
     environment:
       - AUTHENTIK_REDIS__HOST=redis
-      - AUTHENTIK_POSTGRESQL__HOST=external_postgres
+      - AUTHENTIK_POSTGRESQL__HOST=postgres
       - AUTHENTIK_POSTGRESQL__NAME=authentik_db
       - AUTHENTIK_POSTGRESQL__USER=postgres_user
       - AUTHENTIK_POSTGRESQL__PASSWORD=postgres_password
@@ -56,34 +57,16 @@ services:
       ## HTTP Services
       - "traefik.http.routers.authentik-rtr.service=authentik-svc"
       - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
+      
   authentik_worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.2.2}
     container_name: authentik_worker
-  #  restart: unless-stopped
     command: worker
     networks:
       - reverse-proxy
-    #volumes:
-    #  - "authentik_media:/media"
-    #  - "authentik_templates:/templates"
-    #  - "authentik_geoip:/geoip"
-    #environment:
-    #  - AUTHENTIK_REDIS__HOST
-    #  - AUTHENTIK_POSTGRESQL__HOST
-    #  - AUTHENTIK_POSTGRESQL__NAME
-    #  - AUTHENTIK_POSTGRESQL__USER
-    #  - AUTHENTIK_POSTGRESQL__PASSWORD
-    #  - AUTHENTIK_EMAIL__PASSWORD
-    #  - AUTHENTIK_ERROR_REPORTING__ENABLED
-    #  - AUTHENTIK_SECRET_KEY
-    #  - AUTHENTIK_COOKIE_DOMAIN
-      # - WORKERS
-    #secrets:
-     # - authentik_postgresql_db
-     # - authentik_postgresql_user
-     # - authentik_postgresql_password
-     # - authelia_notifier_smtp_password
-     # - authentik_secret_key
+    environment:
+      - AUTHENTIK_SECRET_KEY=test
+
   postgres:
     image: postgres:latest
     #user: "999:999"
