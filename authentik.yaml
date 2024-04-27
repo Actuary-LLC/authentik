@@ -34,15 +34,15 @@ services:
       - AUTHENTIK_POSTGRESQL__PASSWORD=postgres_password
       - AUTHENTIK_EMAIL__PASSWORD
       - AUTHENTIK_ERROR_REPORTING__ENABLED
-     # - AUTHENTIK_SECRET_KEY=test
+      - AUTHENTIK_SECRET_KEY=test
       - AUTHENTIK_COOKIE_DOMAIN
       # - WORKERS
-    secrets:
-      - authentik_postgresql_db=authentik_db
-      - authentik_postgresql_user=postgres_user
-      - authentik_postgresql_password=postgres_password
+    #secrets:
+    #  - authentik_postgresql_db=authentik_db
+    #  - authentik_postgresql_user=postgres_user
+    #  - authentik_postgresql_password=postgres_password
      # - authelia_notifier_smtp_password
-      - authentik_secret_key=test
+    #  - authentik_secret_key=test
     labels:
       - "traefik.enable=true"
       ## HTTP Routers
