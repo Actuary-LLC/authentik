@@ -54,7 +54,8 @@ services:
     image: postgres:latest
     #user: "999:999"
     #user: "1000:100"
-    user: "root"
+    #user: "root"
+    user: "99:100"
     restart: unless-stopped
     #healthcheck:
     #  test: ["CMD-SHELL", "pg_isready -d authentik_db -U nm-iodin"]
