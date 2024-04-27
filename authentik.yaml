@@ -38,10 +38,10 @@ services:
       - AUTHENTIK_COOKIE_DOMAIN
       # - WORKERS
     secrets:
-      - authentik_postgresql_db
-      - authentik_postgresql_user
-      - authentik_postgresql_password
-      - authelia_notifier_smtp_password
+      - authentik_postgresql_db=authentik_db
+      - authentik_postgresql_user=postgres_user
+      - authentik_postgresql_password=postgres_password
+     # - authelia_notifier_smtp_password
       - authentik_secret_key=test
     labels:
       - "traefik.enable=true"
