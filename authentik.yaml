@@ -22,10 +22,10 @@ services:
     command: server
     networks:
       - reverse-proxy
-        volumes:
-      - "$DOCKERDIR/apps/authentik/media:/media"
-      - "$DOCKERDIR/apps/authentik/custom-templates:/templates"
-      - "$DOCKERDIR/apps/authentik/geoip/data:/geoip"
+    #volumes:
+    #  - "$DOCKERDIR/apps/authentik/media:/media"
+    #  - "$DOCKERDIR/apps/authentik/custom-templates:/templates"
+    #  - "$DOCKERDIR/apps/authentik/geoip/data:/geoip"
     environment:
       - AUTHENTIK_REDIS__HOST=redis
       - AUTHENTIK_POSTGRESQL__HOST=postgres
@@ -34,7 +34,7 @@ services:
       - AUTHENTIK_POSTGRESQL__PASSWORD=postgres_password
       - AUTHENTIK_EMAIL__PASSWORD
       - AUTHENTIK_ERROR_REPORTING__ENABLED
-      - AUTHENTIK_SECRET_KEY=test
+     # - AUTHENTIK_SECRET_KEY=test
       - AUTHENTIK_COOKIE_DOMAIN
       # - WORKERS
     secrets:
