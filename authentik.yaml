@@ -3,7 +3,6 @@ version: "3.9"
 services:
   redis:
     image: redis:alpine
-    container_name: authentik_redis
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
@@ -17,7 +16,6 @@ services:
     #  - authentik_redis:/data
   authentik_server:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.2.2}
-    container_name: authentik_server
   #  restart: unless-stopped
     command: server
     networks:
@@ -93,6 +91,8 @@ services:
     user: "root"
     #user: "99:100"
     restart: unless-stopped
+    networks:
+      - reverse-proxy
     #healthcheck:
     #  test: ["CMD-SHELL", "pg_isready -d authentik_db -U nm-iodin"]
     #  start_period: 20s
@@ -115,12 +115,3 @@ services:
 networks:
   reverse-proxy:
     external: true
-
-volumes:
-  postgresTest:
-  authentik_postgres:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=unraid.lan,rw,hard"
-      device: ":/mnt/user/services/authentik/postgres"
