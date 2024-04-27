@@ -34,7 +34,7 @@ services:
       - AUTHENTIK_POSTGRESQL__PASSWORD=postgres_password
       - AUTHENTIK_EMAIL__PASSWORD
       - AUTHENTIK_ERROR_REPORTING__ENABLED
-      #- AUTHENTIK_SECRET_KEY=test
+      - AUTHENTIK_SECRET_KEY=test
       - AUTHENTIK_COOKIE_DOMAIN
       # - WORKERS
     secrets:
