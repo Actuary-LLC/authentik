@@ -11,7 +11,7 @@ services:
       retries: 5
       timeout: 3s
     networks:
-      - reverse-proxy
+      - authentik
     #volumes:
     #  - authentik_redis:/data
     
@@ -21,6 +21,7 @@ services:
     command: server
     networks:
       - reverse-proxy
+      - authentik
     #volumes:
     #  - "$DOCKERDIR/apps/authentik/media:/media"
     #  - "$DOCKERDIR/apps/authentik/custom-templates:/templates"
@@ -65,7 +66,7 @@ services:
     container_name: authentik_worker
     command: worker
     networks:
-      - reverse-proxy
+      - authentik
     environment:
       AUTHENTIK_SECRET_KEY: test
       AUTHENTIK_REDIS__HOST: redis
@@ -81,9 +82,8 @@ services:
     #user: "1000:100"
     user: "root"
     #user: "99:100"
-    restart: unless-stopped
     networks:
-      - reverse-proxy
+      - authentik
     #healthcheck:
     #  test: ["CMD-SHELL", "pg_isready -d authentik_db -U nm-iodin"]
     #  start_period: 20s
@@ -106,3 +106,4 @@ services:
 networks:
   reverse-proxy:
     external: true
+  authentik:
