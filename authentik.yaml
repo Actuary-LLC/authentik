@@ -66,3 +66,4 @@ services:
 networks:
   authentik:
   reverse-proxy:
+    external: true
