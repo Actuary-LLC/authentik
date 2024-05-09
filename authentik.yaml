@@ -14,7 +14,7 @@ services:
     environment:
       AUTHENTIK_SECRET_KEY: test
       AUTHENTIK_REDIS__HOST: unraid.lan
-      AUTHENTIK_REDIS__DB: authentik
+      #AUTHENTIK_REDIS__DB: authentik
       AUTHENTIK_POSTGRESQL__HOST: 192.168.2.2
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__USER: postgres_user
