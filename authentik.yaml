@@ -2,7 +2,7 @@ version: "3.9"
 
 services:    
   authentik_server:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.2.2}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
     command: server
     networks:
       - reverse-proxy
@@ -48,7 +48,7 @@ services:
         - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
       
   authentik_worker:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.2.2}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
     command: worker
     networks:
       - authentik
