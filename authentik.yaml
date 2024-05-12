@@ -6,7 +6,7 @@ networks:
     external: true
     
 services:    
-  authentik_server:
+  server:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
     command: server
     networks:
@@ -39,7 +39,7 @@ services:
         - "traefik.http.routers.authentik-rtr.service=authentik-svc"
         - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
       
-  authentik_worker:
+  worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
     command: worker
     networks:
