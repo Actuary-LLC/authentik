@@ -1,5 +1,10 @@
 version: "3.9"
 
+networks:
+  authentik:
+  reverse-proxy:
+    external: true
+    
 services:    
   authentik_server:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
@@ -7,29 +12,16 @@ services:
     networks:
       - reverse-proxy
       - authentik
-    #volumes:
-    #  - "$DOCKERDIR/apps/authentik/media:/media"
-    #  - "$DOCKERDIR/apps/authentik/custom-templates:/templates"
-    #  - "$DOCKERDIR/apps/authentik/geoip/data:/geoip"
     environment:
-      AUTHENTIK_SECRET_KEY: test
-      AUTHENTIK_REDIS__HOST: unraid.lan
-      #AUTHENTIK_REDIS__DB: authentik
-      AUTHENTIK_POSTGRESQL__HOST: 192.168.2.2
-      AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__USER: postgres_user
-      AUTHENTIK_POSTGRESQL__PASSWORD: postgres_password
       AUTHENTIK_COOKIE_DOMAIN: actuary.dev
-      #AUTHENTIK_EMAIL__PASSWORD:
-      #AUTHENTIK_ERROR_REPORTING__ENABLED:
-      #AUTHENTIK_COOKIE_DOMAIN:
-      # - WORKERS
-    #secrets:
-    #  - authentik_postgresql_db=authentik_db
-    #  - authentik_postgresql_user=postgres_user
-    #  - authentik_postgresql_password=postgres_password
-     # - authelia_notifier_smtp_password
-    #  - authentik_secret_key=test
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
+      #CACHE
+      AUTHENTIK_REDIS__HOST: unraid.lan
+      #DATABASE
+      AUTHENTIK_POSTGRESQL__HOST: unraid.lan
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: ${AUTHENTIK_POSTGRESQL__USER}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_POSTGRESQL__PASSWORD}
     deploy:
       labels:
         - "traefik.enable=true"
@@ -53,16 +45,12 @@ services:
     networks:
       - authentik
     environment:
-      AUTHENTIK_SECRET_KEY: test      
-      AUTHENTIK_REDIS__HOST: unraid.lan
-      #AUTHENTIK_REDIS__DB: authentik
-      AUTHENTIK_POSTGRESQL__HOST: 192.168.2.2
-      AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__USER: postgres_user
-      AUTHENTIK_POSTGRESQL__PASSWORD: postgres_password
       AUTHENTIK_COOKIE_DOMAIN: actuary.dev
-    
-networks:
-  authentik:
-  reverse-proxy:
-    external: true
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
+      #CACHE
+      AUTHENTIK_REDIS__HOST: unraid.lan
+      #DATABASE
+      AUTHENTIK_POSTGRESQL__HOST: unraid.lan
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: ${AUTHENTIK_POSTGRESQL__USER}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_POSTGRESQL__PASSWORD}
