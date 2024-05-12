@@ -4,24 +4,31 @@ on:
   push:
     branches:
       - main
-
 jobs:
-  test-runner:
+  checkout-repository:
     runs-on: [traefik]
- #   env:
-#      JUPYTER_NOTEBOOK_PASSWORD: ${{ secrets.JUPYTER_NOTEBOOK_PASSWORD }}
     steps:
-   #   - name: Refresh images
-  #      run: |
-  #        docker image pull actuary/hub:main
-  #        docker image pull actuary/notebook:main
       - name: Checkout
-        uses: actions/checkout@v4.0.0
-      #- name: 'Create env file'
-     #   run: |
-     #     echo "${{ secrets.OAUTH }}" > oauth.env
-     #docker stack rm external
-          #sleep 5
+        uses: actions/checkout@v4
+        with:
+          repository: 'Actuary-LLC/task'
+          ref: 'main'       
+  deploy-authentik:
+    needs: checkout-repository
+    runs-on: [traefik]
+    env:
+      AUTHENTIK_POSTGRESQL__USER: ${{ vars.POSTGRES_USER }}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      AUTHENTIK_SECRET_KEY: ${{ secrets.AUTHENTIK_SECRET_KEY }}
+    steps:
       - name: Remove and redeploy services
         run: |
-          docker stack deploy -c authentik.yaml external
+          SERVICES=("service_task") 
+          for SERVICE_NAME in "${SERVICES[@]}"; do
+            if docker service ls | grep -q $SERVICE_NAME; then
+              docker service rm $SERVICE_NAME;
+              echo "Service $SERVICE_NAME removed."
+            else echo "Service $SERVICE_NAME is not running."
+            fi
+          done
+      - run: docker stack deploy -c authentik.yaml service
