@@ -20,6 +20,7 @@ jobs:
       AUTHENTIK_POSTGRESQL__USER: ${{ vars.POSTGRES_USER }}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       AUTHENTIK_SECRET_KEY: ${{ secrets.AUTHENTIK_SECRET_KEY }}
+      HOMEPAGE_API_TOKEN: ${{ secrets.HOMEPAGE_API_TOKEN }}
     steps:
       - name: Remove and redeploy services
         run: |
