@@ -39,10 +39,15 @@ services:
         - "traefik.http.routers.authentik-rtr.service=authentik-svc"
         - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
         ## Homepage
-        - homepage.group=Media
-        - homepage.name=Emby
-        - homepage.icon=emby.png
-        - homepage.href=https://authentik.actuary.dev
+        - homepage.group=External
+        - homepage.name=Authentik
+        - homepage.icon=authentik.png
+        - homepage.href=https://authentik.actuary.dev/
+        - homepage.description=Authentication
+        - homepage.widget.type=authentik
+        - homepage.widget.url=https://authentik.actuary.dev/
+        - homepage.widget.key=${HOMEPAGE_API_KEY}
+        - homepage.widget.fields=["users", "loginsLast24H", "failedLoginsLast24H"]
       
   worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
