@@ -39,11 +39,11 @@ services:
         - "traefik.http.routers.authentik-rtr.service=authentik-svc"
         - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
         ## Homepage
-        #- homepage.group=External
-        #- homepage.name=Authentik
-        #- homepage.icon=authentik.png
-        #- homepage.href=https://authentik.actuary.dev/
-        #- homepage.description=Authentication
+        - homepage.group=External
+        - homepage.name=Authentik
+        - homepage.icon=authentik.png
+        - homepage.href=https://authentik.actuary.dev/
+        - homepage.description=Authentication
         - homepage.widget.type=authentik
         - homepage.widget.url=https://authentik.actuary.dev/
         - homepage.widget.key=${HOMEPAGE_API_KEY}
