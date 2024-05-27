@@ -47,7 +47,7 @@ services:
         - homepage.widget.type=authentik
         - homepage.widget.url=https://authentik.actuary.dev/
         - homepage.widget.key=${HOMEPAGE_API_KEY}
-        - homepage.widget.fields=["users"]
+        #- homepage.widget.fields=["users"]
       
   worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
