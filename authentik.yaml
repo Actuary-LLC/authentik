@@ -46,7 +46,7 @@ services:
         - homepage.description=Authentication
         - homepage.widget.type=authentik
         - homepage.widget.url=https://authentik.actuary.dev/
-        - homepage.widget.key=${HOMEPAGE_API_KEY}
+        - homepage.widget.key=${HOMEPAGE_API_TOKEN}
         #- homepage.widget.fields=["users"]
       
   worker:
