@@ -38,6 +38,11 @@ services:
         ## HTTP Services
         - "traefik.http.routers.authentik-rtr.service=authentik-svc"
         - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
+        ## Homepage
+        - homepage.group=Media
+        - homepage.name=Emby
+        - homepage.icon=emby.png
+        - homepage.href=https://authentik.actuary.dev
       
   worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
