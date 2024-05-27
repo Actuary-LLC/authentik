@@ -42,10 +42,10 @@ services:
         - homepage.group=External
         - homepage.name=Authentik
         - homepage.icon=authentik.png
-        - homepage.href=https://authentik.actuary.dev/
+        #- homepage.href=https://authentik.actuary.dev/
         - homepage.description=Authentication
         - homepage.widget.type=authentik
-        - homepage.widget.url=https://authentik.actuary.dev/
+        #- homepage.widget.url=https://authentik.actuary.dev/
         - homepage.widget.key=${HOMEPAGE_API_KEY}
         - homepage.widget.fields=["users", "loginsLast24H", "failedLoginsLast24H"]
       
