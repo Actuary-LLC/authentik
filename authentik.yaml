@@ -48,6 +48,8 @@ services:
         - homepage.widget.url=https://authentik.actuary.dev/
         - homepage.widget.key=${HOMEPAGE_API_TOKEN}
         #- homepage.widget.fields=["users"]
+        ## DIUN
+        - diun.enable=true
       
   worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.4.2}
