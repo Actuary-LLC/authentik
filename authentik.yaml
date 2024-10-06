@@ -10,8 +10,10 @@ services:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.8.3}
     command: server
     networks:
-      - reverse-proxy
-      - authentik
+      authentik:
+      reverse-proxy:
+        aliases:
+          - authentik_server
     environment:
       AUTHENTIK_COOKIE_DOMAIN: actuary.dev
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
