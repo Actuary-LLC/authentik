@@ -14,8 +14,6 @@ services:
       reverse-proxy:
         aliases:
           - authentik_server
-    ports:
-      - "80:9000"
     environment:
       AUTHENTIK_COOKIE_DOMAIN: actuary.dev
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
