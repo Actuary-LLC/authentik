@@ -29,9 +29,9 @@ services:
         - "traefik.enable=true"
         ## HTTP Routers
         - "traefik.http.routers.authentik-rtr.rule=Host(`authentik.actuary.dev`)"
-        #- "traefik.http.routers.authentik-rtr.entrypoints=websecure"
-        #- "traefik.http.routers.authentik-rtr.tls=true"
-        #- "traefik.http.routers.authentik-rtr.tls.certresolver=myresolver"
+        - "traefik.http.routers.authentik-rtr.entrypoints=websecure"
+        - "traefik.http.routers.authentik-rtr.tls=true"
+        - "traefik.http.routers.authentik-rtr.tls.certresolver=myresolver"
         ## Individual Application forwardAuth regex (catch any subdomain using individual application forwardAuth)  
         - "traefik.http.routers.authentik-rtr-outpost.rule=HostRegexp(`{subdomain:[a-z0-9-]+}.actuary.dev`) && PathPrefix(`/outpost.goauthentik.io/`)"
         #- "traefik.http.routers.authentik-rtr-outpost.entrypoints=websecure"
