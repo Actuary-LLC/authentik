@@ -7,7 +7,7 @@ networks:
     
 services:    
   server:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.8.3}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.12.0}
     command: server
     networks:
       authentik:
@@ -68,7 +68,7 @@ services:
         - "traefik.http.middlewares.authentik.forwardauth.authresponseheaders=X-authentik-meta-version"
       
   worker:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.8.3}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2024.12.0}
     command: worker
     networks:
       - authentik
