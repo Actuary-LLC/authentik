@@ -53,7 +53,7 @@ services:
         ## DIUN
         - diun.enable=true
         #Authentik Middleware
-        - "traefik.http.middlewares.authentik.forwardauth.address=http://192.168.2.2:9000/outpost.goauthentik.io/auth/traefik"
+        - "traefik.http.middlewares.authentik.forwardauth.address=http://192.168.2.3:9000/outpost.goauthentik.io/auth/traefik"
         - "traefik.http.middlewares.authentik.forwardauth.trustforwardheader=true"
         - "traefik.http.middlewares.authentik.forwardauth.authresponseheaders=X-authentik-username"
         - "traefik.http.middlewares.authentik.forwardauth.authresponseheaders=X-authentik-groups"
