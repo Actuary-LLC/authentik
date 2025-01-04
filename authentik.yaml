@@ -17,7 +17,7 @@ services:
     dns:
       - 8.8.8.8
     environment:
-      #AUTHENTIK_COOKIE_DOMAIN: actuary.dev
+      AUTHENTIK_COOKIE_DOMAIN: actuary.dev
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
       AUTHENTIK_DEBUG: "true"
       #CACHE
@@ -76,7 +76,7 @@ services:
     networks:
       - authentik
     environment:
-      #AUTHENTIK_COOKIE_DOMAIN: actuary.dev
+      AUTHENTIK_COOKIE_DOMAIN: actuary.dev
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
       #CACHE
       AUTHENTIK_REDIS__HOST: unraid.lan
