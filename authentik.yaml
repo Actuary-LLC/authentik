@@ -14,8 +14,8 @@ services:
       reverse-proxy:
         aliases:
           - authentik_server
-        dns:
-          - 8.8.8.8
+    dns:
+      - 8.8.8.8
     environment:
       AUTHENTIK_COOKIE_DOMAIN: actuary.dev
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
