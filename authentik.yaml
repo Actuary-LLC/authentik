@@ -19,7 +19,7 @@ services:
     environment:
       AUTHENTIK_COOKIE_DOMAIN: actuary.dev
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
-      AUTHENTIK_LOG_LEVEL: trace
+      #AUTHENTIK_LOG_LEVEL: trace
       #CACHE
       AUTHENTIK_REDIS__HOST: unraid.lan
       #DATABASE
