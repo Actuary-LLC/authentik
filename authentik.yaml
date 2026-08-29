@@ -38,7 +38,7 @@ services:
         - "traefik.http.routers.authentik-rtr-outpost.entrypoints=websecure"
         - "traefik.http.routers.authentik-rtr-outpost.tls=true"
         - "traefik.http.routers.authentik-rtr-outpost.tls.certresolver=myresolver"
-        - "traefik.http.routers.authentik-rtr.service=authentik-svc"
+        #- "traefik.http.routers.authentik-rtr.service=authentik-svc"
         - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
         - homepage.group=Security
         - homepage.name=Authentik
