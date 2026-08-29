@@ -34,7 +34,10 @@ services:
         - "traefik.http.routers.authentik-rtr.entrypoints=websecure"
         - "traefik.http.routers.authentik-rtr.tls=true"
         - "traefik.http.routers.authentik-rtr.tls.certresolver=myresolver"
-        #- "traefik.http.routers.authentik-rtr-outpost.rule=HostRegexp(`{subdomain:[a-z0-9-]+}.actuary.dev`) && PathPrefix(`/outpost.goauthentik.io/`)"
+        - "traefik.http.routers.authentik-rtr-outpost.rule=HostRegexp(`{subdomain:[a-z0-9-]+}.actuary.dev`) && PathPrefix(`/outpost.goauthentik.io/`)"
+        - "traefik.http.routers.authentik-rtr-outpost.entrypoints=websecure"
+-       - "traefik.http.routers.authentik-rtr-outpost.tls=true"
+-       - "traefik.http.routers.authentik-rtr-outpost.tls.certresolver=myresolver"
         - "traefik.http.routers.authentik-rtr.service=authentik-svc"
         - "traefik.http.services.authentik-svc.loadBalancer.server.port=9000"
         - homepage.group=Security
