@@ -1,9 +1,12 @@
-name: 'Autehntik'
+name: 'Authentik'
 on:
   workflow_dispatch:
   push:
     branches:
       - main
+    paths:
+      - "authentik.yaml"
+      - ".github/workflows/deploy.yaml"
 jobs:
   checkout-repository:
     runs-on: [traefik]
@@ -21,6 +24,8 @@ jobs:
       AUTHENTIK_POSTGRESQL__PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       AUTHENTIK_SECRET_KEY: ${{ secrets.AUTHENTIK_SECRET_KEY }}
       HOMEPAGE_API_TOKEN: ${{ secrets.HOMEPAGE_API_TOKEN }}
+      STACK_NAME: authentik
+      SERVICE_NAME: authentik_server
     steps:
       - name: Remove and redeploy services
         run: |
@@ -32,4 +37,22 @@ jobs:
             else echo "Service $SERVICE_NAME is not running."
             fi
           done
-      - run: docker stack deploy -c authentik.yaml authentik
+      - name: Deploy stack
+        run: docker stack deploy -c authentik.yaml "$STACK_NAME"
+      - name: Wait for convergence
+        run: |
+          for i in $(seq 1 30); do
+            REPLICAS=$(docker service ls \
+              --filter "name=${SERVICE_NAME}" \
+              --format "{{.Replicas}}")
+            [ "$REPLICAS" = "1/1" ] && echo "✅ Done" && exit 0
+            echo "Waiting... ($i/30) — $REPLICAS"
+            if [ "$i" -eq 5 ] || [ $((i % 10)) -eq 0 ]; then
+              docker service ps "${SERVICE_NAME}" --no-trunc --filter "desired-state=running" 2>/dev/null || true
+              docker service logs --tail 30 "${SERVICE_NAME}" 2>/dev/null || true
+            fi
+            sleep 5
+          done
+          echo "--- Timeout, rolling back ---"
+          docker service rollback "${SERVICE_NAME}"
+          exit 1
